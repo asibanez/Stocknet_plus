@@ -9,18 +9,22 @@ import pandas as pd
 from tqdm import tqdm
 from transformers import AutoTokenizer
 
+
 # %% Function definitions
 def BERT_encode_f(bert_tokenizer, text, seq_len):
     BERT_encoding = bert_tokenizer(text,
-                                   return_tensors = 'pt',
-                                   padding = 'max_length',
-                                   truncation = True,
-                                   max_length = seq_len)
+                                   return_tensors='pt',
+                                   padding='max_length',
+                                   truncation=True,
+                                   max_length=seq_len)
 
     return BERT_encoding
 
+
 # %% Path definition
 data_folder = 'C:/Users/siban/Dropbox/BICTOP/MyInvestor/06_model/02_NLP/06_stocknet/00_data/01_preprocessed'
+data_folder = '/data/users/sibanez/04_Stocknet_plus/00_data/01_preprocessed'
+
 input_filename = '03_preprocessed_lookback.pkl'
 output_filename = '04_BERT_encoded.pkl'
 
@@ -33,46 +37,16 @@ seq_len = 256
 data_df = pd.read_pickle(os.path.join(data_folder, input_filename))
 
 # %% BERT encoding
-columns = [x for x in data_df.columns if 'Text' in x ]
-for column in tqdm(columns, desc = 'Encoding text'):
+columns = [x for x in data_df.columns if 'Text' in x]
+for column in tqdm(columns, desc='Encoding text'):
     BERT_encoding = []
     for text in tqdm(data_df[column]):
-        BERT_encoding.append(BERT_encode_f(bert_tokenizer, text, seq_len)['input_ids'])
+        BERT_encoding.append(BERT_encode_f(bert_tokenizer,
+                                           text,
+                                           seq_len)['input_ids'])
     data_df[column] = BERT_encoding
 
 # %% Save results
-data_df.to_pickle(os.path.join(data_folder, output_filename))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#%% Compute empty headline
-"""
-bert_tokenizer = AutoTokenizer.from_pretrained(model_name, use_fast=True)
-bert_encoding = bert_tokenizer('hello how are you',
-                          return_tensors = 'pt',
-                          padding = 'max_length',
-                          truncation = True,
-                          max_length = seq_len)
-
-empty_token_ids = (empty['input_ids'].squeeze(0).type(torch.LongTensor))
-empty_token_types = (empty['token_type_ids'].squeeze(0).type(torch.LongTensor))
-empty_att_masks = (empty['attention_mask'].squeeze(0).type(torch.LongTensor))
-"""
+output_path = os.path.join(data_folder, output_filename)
+data_df.to_pickle(output_path)
+print(f'Output saved to: {output_path}')

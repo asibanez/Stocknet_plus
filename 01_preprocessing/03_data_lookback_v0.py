@@ -9,6 +9,7 @@ import os
 import pandas as pd
 from tqdm import tqdm
 
+
 # %% Function definitions
 def generate_lookback_day_f(data_df, base_date):
     base_col_name = 'Text_n_m_' + str(base_date)
@@ -18,8 +19,11 @@ def generate_lookback_day_f(data_df, base_date):
     data_df = data_df[1:]
     return data_df
 
+
 # %% Path definition
-data_folder = 'C:/Users/siban/Dropbox/BICTOP/MyInvestor/06_model/02_NLP/06_stocknet/00_data/01_preprocessed'
+# data_folder = 'C:/Users/siban/Dropbox/BICTOP/MyInvestor/06_model/02_NLP/06_stocknet/00_data/01_preprocessed'
+data_folder = '/data/users/sibanez/04_Stocknet_plus/00_data/01_preprocessed'
+
 input_filename = '02_preprocessed.pkl'
 output_filename = '03_preprocessed_lookback.pkl'
 
@@ -53,11 +57,11 @@ if remove_emtpy_entries:
     for column in text_columns:
         mask_aux = (data_df_out[column] != "")
         mask = mask & mask_aux
-    
+
     data_df_out = data_df_out[mask]
 
 # %% Save results
+output_path = os.path.join(data_folder, output_filename)
+data_df_out.to_pickle(output_path)
 print(f'\nShape saved dataframe = {data_df_out.shape}')
-data_df_out.to_pickle(os.path.join(data_folder, output_filename))
-
-#%%
+print(f'Output saved to: {output_path}')

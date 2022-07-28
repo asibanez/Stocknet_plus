@@ -11,9 +11,9 @@ import importlib
 import pandas as pd
 from tqdm import tqdm
 import torch
-import torch.nn as nn
+from torch import nn
 from torch.utils.data import DataLoader
-import utils.utils as utils
+from utils import utils
 
 
 # %% Function definitions
