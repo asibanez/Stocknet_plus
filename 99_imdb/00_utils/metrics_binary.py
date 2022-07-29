@@ -29,7 +29,7 @@ def compute_metrics(Y_ground_truth, Y_pred_binary, Y_pred_score):
     return precision, recall, f1, auc
 
 #%% Path definitions
-base_path = 'C:/Users/siban/Dropbox/BICTOP/MyInvestor/06_model/02_NLP/06_stocknet/00_data/02_runs/02_TEST_2'
+base_path = 'C:/Users/siban/Dropbox/BICTOP/MyInvestor/06_model/02_NLP/06_stocknet/00_1_data_imbd/02_runs/00_TEST_0'
 
 #%% Global initialization
 random.seed(1234)
@@ -110,7 +110,7 @@ plt.grid()
 plt.show()
 
 #%% Plot learning curves
-plt.plot(train_results['training_loss'], label = 'train')
+#plt.plot(train_results['training_loss'], label = 'train')
 plt.plot(train_results['validation_loss'], label = 'val')
 plt.xlabel('Epochs')
 plt.ylabel('loss')
@@ -119,6 +119,7 @@ plt.legend(loc = 'upper right')
 plt.grid()
 plt.show()
 
+#%%
 plt.plot(train_results['training_acc'], label = 'train')
 plt.plot(train_results['validation_acc'], label = 'val')
 plt.xlabel('Epochs')
