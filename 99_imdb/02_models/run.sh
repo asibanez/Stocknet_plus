@@ -1,8 +1,8 @@
-INPUT_DIR=C:/Users/siban/Dropbox/BICTOP/MyInvestor/06_model/02_NLP/06_stocknet/00_1_data_imbd/01_preprocessed
-OUTPUT_DIR=C:/Users/siban/Dropbox/BICTOP/MyInvestor/06_model/02_NLP/06_stocknet/00_1_data_imbd/02_runs/00_TEST_0
+#INPUT_DIR=C:/Users/siban/Dropbox/BICTOP/MyInvestor/06_model/02_NLP/06_stocknet/00_1_data_imbd/01_preprocessed
+#OUTPUT_DIR=C:/Users/siban/Dropbox/BICTOP/MyInvestor/06_model/02_NLP/06_stocknet/00_1_data_imbd/02_runs/00_TEST_0
 
-#INPUT_DIR=/data/users/sibanez/04_Stocknet_plus/00_data/01_preprocessed
-#OUTPUT_DIR=/data/users/sibanez/04_Stocknet_plus/00_data/02_runs/02_TEST_2
+INPUT_DIR=/data/users/sibanez/05_IMBD/01_preprocessed
+OUTPUT_DIR=/data/users/sibanez/05_IMBD/02_runs/00_TEST_0
 
 MODEL_FILENAME=model_v0.py
 
@@ -19,8 +19,8 @@ python train_test.py \
     --seed=1234 \
     --use_cuda=True \
     \
-    --n_epochs=20 \
-    --batch_size_train=30 \
+    --n_epochs=10 \
+    --batch_size_train=60 \
     --shuffle_train=True \
     --drop_last_train=True \
     --dev_train_ratio=1 \
@@ -40,7 +40,7 @@ python train_test.py \
     --batch_size_test=15 \
     --gpu_id_test=1 \
 
-read -p 'EOF'
+#read -p 'EOF'
 
 #--model_name=nlpaueb/legal-bert-small-uncased \
 #--hidden_dim=512 \
