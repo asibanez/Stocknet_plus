@@ -1,16 +1,16 @@
 #INPUT_DIR=C:/Users/siban/Dropbox/BICTOP/MyInvestor/06_model/02_NLP/06_stocknet/00_1_data_imbd/01_preprocessed
 #OUTPUT_DIR=C:/Users/siban/Dropbox/BICTOP/MyInvestor/06_model/02_NLP/06_stocknet/00_1_data_imbd/02_runs/00_TEST_0
 
-INPUT_DIR=/data/users/sibanez/05_IMBD/01_preprocessed
-OUTPUT_DIR=/data/users/sibanez/05_IMBD/02_runs/00_TEST_0
+INPUT_DIR=/data/users/sibanez/05_IMBD/02_preprocessed_att_mask
+OUTPUT_DIR=/data/users/sibanez/05_IMBD/02_runs/01_TEST_1_att_masks
 
-MODEL_FILENAME=model_v0.py
+MODEL_FILENAME=model_v1.py
 
 python train_test.py \
     --input_dir=$INPUT_DIR \
     --output_dir=$OUTPUT_DIR \
     --model_filename=$MODEL_FILENAME \
-    --task=Train \
+    --task=Test \
     \
     --model_name=bert-base-uncased \
     --seq_len=512 \
@@ -35,9 +35,9 @@ python train_test.py \
     --save_step_cliff=0 \
     --gpu_ids_train=0,1 \
     \
-    --test_file=model_dev.pkl \
-    --model_file=model.pt.6 \
-    --batch_size_test=15 \
+    --test_file=model_test.pkl \
+    --model_file=model.pt.4 \
+    --batch_size_test=30 \
     --gpu_id_test=1 \
 
 #read -p 'EOF'
