@@ -108,7 +108,7 @@ def get_prices_f(ticker, folder):
 # %% Path definition
 tweets_folder = 'C:/Users/siban/Dropbox/BICTOP/MyInvestor/06_model/02_NLP/06_stocknet/01_data/00_stocknet-dataset-master/tweet/preprocessed/'
 prices_folder = 'C:/Users/siban/Dropbox/BICTOP/MyInvestor/06_model/02_NLP/06_stocknet/01_data/00_stocknet-dataset-master/price/preprocessed/'
-output_folder = 'C:/Users/siban/Dropbox/BICTOP/MyInvestor/06_model/02_NLP/06_stocknet/00_data_imbd/01_preprocessed/02_att_mask_1_day_paper_split'
+output_folder = 'C:/Users/siban/Dropbox/BICTOP/MyInvestor/06_model/02_NLP/06_stocknet/01_data/01_preprocessed/02_att_0_day_split_paper'
 
 # tweets_folder = '/data/users/sibanez/04_Stocknet_plus/00_data/00_stocknet-dataset-master/tweet/preprocessed/'
 # prices_folder = '/data/users/sibanez/04_Stocknet_plus/00_data/00_stocknet-dataset-master/price/preprocessed/'
