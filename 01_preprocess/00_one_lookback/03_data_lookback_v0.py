@@ -9,7 +9,7 @@ import os
 import pandas as pd
 
 # %% Path definition
-data_folder = 'C:/Users/siban/Dropbox/BICTOP/MyInvestor/06_model/02_NLP/06_stocknet/01_data/02_preprocessed_one_lookback'
+data_folder = 'C:/Users/siban/Dropbox/BICTOP/MyInvestor/06_model/02_NLP/06_stocknet/00_data_imbd/01_preprocessed/02_att_mask_1_day_paper_split'
 # data_folder = '/data/users/sibanez/04_Stocknet_plus/00_data/01_preprocessed'
 
 input_filename = '02_preprocessed.pkl'

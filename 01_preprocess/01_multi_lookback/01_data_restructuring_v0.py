@@ -104,15 +104,14 @@ def get_prices_f(ticker, folder):
 
     return output
 
-
 # %% Path definition
-# tweets_folder = 'C:/Users/siban/Dropbox/BICTOP/MyInvestor/06_model/02_NLP/06_stocknet/00_data/00_stocknet-dataset-master/tweet/preprocessed/'
-# prices_folder = 'C:/Users/siban/Dropbox/BICTOP/MyInvestor/06_model/02_NLP/06_stocknet/00_data/00_stocknet-dataset-master/price/preprocessed/'
-# output_folder = 'C:/Users/siban/Dropbox/BICTOP/MyInvestor/06_model/02_NLP/06_stocknet/00_data/01_preprocessed'
+tweets_folder = 'C:/Users/siban/Dropbox/BICTOP/MyInvestor/06_model/02_NLP/06_stocknet/01_data/00_stocknet-dataset-master/tweet/preprocessed/'
+prices_folder = 'C:/Users/siban/Dropbox/BICTOP/MyInvestor/06_model/02_NLP/06_stocknet/01_data/00_stocknet-dataset-master/price/preprocessed/'
+output_folder = 'C:/Users/siban/Dropbox/BICTOP/MyInvestor/06_model/02_NLP/06_stocknet/01_data/01_preprocessed'
 
-tweets_folder = '/data/users/sibanez/04_Stocknet_plus/00_data/00_stocknet-dataset-master/tweet/preprocessed/'
-prices_folder = '/data/users/sibanez/04_Stocknet_plus/00_data/00_stocknet-dataset-master/price/preprocessed/'
-output_folder = '/data/users/sibanez/04_Stocknet_plus/00_data/01_preprocessed/'
+# tweets_folder = '/data/users/sibanez/04_Stocknet_plus/00_data/00_stocknet-dataset-master/tweet/preprocessed/'
+# prices_folder = '/data/users/sibanez/04_Stocknet_plus/00_data/00_stocknet-dataset-master/price/preprocessed/'
+# output_folder = '/data/users/sibanez/04_Stocknet_plus/00_data/01_preprocessed/'
 
 output_filename = '01_restructured.pkl'
 
@@ -139,6 +138,16 @@ for ticker in tqdm(ticker_list, desc='Generating price dataframe'):
     price_df_aux = get_prices_f(ticker, prices_folder)
     price_df = pd.concat([price_df, price_df_aux], axis=0)
 
+# %% Remove extra dates from price dataframe
+slicer = (price_df.Date >= '2014-01-01') & (price_df.Date < '2016-01-01')
+price_df = price_df[slicer]
+
+# %% Remove small price movements from price dataframe
+slicer = ~((price_df.Movement_percent > -0.005) &
+           (price_df.Movement_percent <= 0.0055))
+
+price_df = price_df[slicer]
+
 # %% Merge tweets and prices
 output_df = pd.merge(left=price_df,
                      right=tweet_df,
@@ -150,11 +159,6 @@ output_df.Text = output_df.Text.fillna('NA')
 print(f'\nShape tweets dataframe = {tweet_df.shape}')
 print(f'Shape prices dataframe = {price_df.shape}')
 print(f'Shape output dataframe = {output_df.shape}')
-
-dates_prices = set(price_df['Date'])
-dates_tweets = set(tweet_df['Date'])
-intersection = dates_prices.intersection(dates_tweets)
-print(f'Number of intersected dates = {len(intersection)}')
 
 # %% Save results
 if not os.path.isdir(output_folder):

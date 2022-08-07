@@ -108,7 +108,7 @@ def get_prices_f(ticker, folder):
 # %% Path definition
 tweets_folder = 'C:/Users/siban/Dropbox/BICTOP/MyInvestor/06_model/02_NLP/06_stocknet/01_data/00_stocknet-dataset-master/tweet/preprocessed/'
 prices_folder = 'C:/Users/siban/Dropbox/BICTOP/MyInvestor/06_model/02_NLP/06_stocknet/01_data/00_stocknet-dataset-master/price/preprocessed/'
-output_folder = 'C:/Users/siban/Dropbox/BICTOP/MyInvestor/06_model/02_NLP/06_stocknet/01_data/02_preprocessed_one_lookback'
+output_folder = 'C:/Users/siban/Dropbox/BICTOP/MyInvestor/06_model/02_NLP/06_stocknet/00_data_imbd/01_preprocessed/02_att_mask_1_day_paper_split'
 
 # tweets_folder = '/data/users/sibanez/04_Stocknet_plus/00_data/00_stocknet-dataset-master/tweet/preprocessed/'
 # prices_folder = '/data/users/sibanez/04_Stocknet_plus/00_data/00_stocknet-dataset-master/price/preprocessed/'
@@ -142,7 +142,6 @@ for ticker in tqdm(ticker_list, desc='Generating price dataframe'):
 # %% Remove extra dates from price dataframe
 slicer = (price_df.Date >= '2014-01-01') & (price_df.Date < '2016-01-01')
 price_df = price_df[slicer]
-
 
 # %% Remove small price movements from price dataframe
 slicer = ~((price_df.Movement_percent > -0.005) &
