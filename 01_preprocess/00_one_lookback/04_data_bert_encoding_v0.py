@@ -22,7 +22,7 @@ def BERT_encode_f(bert_tokenizer, text, seq_len):
 
 
 # %% Path definition
-data_folder = 'C:/Users/siban/Dropbox/BICTOP/MyInvestor/06_model/02_NLP/06_stocknet/01_data/02_preprocessed_one_lookback'
+data_folder = 'C:/Users/siban/Dropbox/BICTOP/MyInvestor/06_model/02_NLP/06_stocknet/01_data/01_preprocessed/02_att_0_day_split_paper'
 # data_folder = '/data/users/sibanez/04_Stocknet_plus/00_data/01_preprocessed'
 
 input_filename = '03_preprocessed_lookback.pkl'
@@ -39,7 +39,7 @@ data_df = pd.read_pickle(os.path.join(data_folder, input_filename))
 # %% BERT encoding
 bert_token_ids = []
 bert_att_masks = []
-for text in tqdm(data_df['Text_n_m_1'], desc='Encoding BERT'):
+for text in tqdm(data_df['Text_n'], desc='Encoding BERT'):
     BERT_encoding = BERT_encode_f(bert_tokenizer, text, seq_len)
     bert_token_ids.append(BERT_encoding['input_ids'])
     bert_att_masks.append(BERT_encoding['attention_mask'])

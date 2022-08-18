@@ -11,7 +11,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 # %% Path definition
-data_folder = 'C:/Users/siban/Dropbox/BICTOP/MyInvestor/06_model/02_NLP/06_stocknet/01_data/02_preprocessed_one_lookback'
+data_folder = 'C:/Users/siban/Dropbox/BICTOP/MyInvestor/06_model/02_NLP/06_stocknet/01_data/01_preprocessed/02_att_0_day_split_paper'
 # data_folder = '/data/users/sibanez/04_Stocknet_plus/00_data/01_preprocessed'
 
 input_filename = '01_restructured.pkl'
@@ -30,6 +30,7 @@ _ = plt.hist(len_tweets, range=(1, 200),
              bins=100,  label='tweets per day')
 _ = plt.legend()
 plt.show()
+print(f'Max Tweets per day = {max(len_tweets)}')
 
 # %% Prune to max tweets per day
 tweets_pruned = [x[0:max_tweets_day] for x in tweets]
