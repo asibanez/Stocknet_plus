@@ -1,6 +1,6 @@
 '''
 v0 -> Includes attention masks as input to BERT model
-   -> Only 1 lookback day
+   -> Only 0/1 lookback day
 '''
 
 # Imports
